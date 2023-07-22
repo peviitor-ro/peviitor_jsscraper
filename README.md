@@ -62,7 +62,16 @@ const data = { key1: "value1", key2: "value2" };
 const soup = await scraper.post(data);
 ```
 
-3. Pentru a salva job-urile in baza noastră de date și pentru a putea testa codul este esențial să avem 2 funcții, `getJobs` si `getParams` care trebuiesc exportate.
+3. Pentru a randa o pagina cu elemente dinamic generate de JavaScript:
+
+```javascript
+const url = "https://www.example.com";
+const scraper = new Scraper(url);
+const soup = await scraper.render_page();
+console.log(soup.prettify());
+```
+
+4. Pentru a salva job-urile in baza noastră de date și pentru a putea testa codul este esențial să avem 2 funcții, `getJobs` si `getParams` care trebuiesc exportate.
 
 ```javascript
 const { postApiPeViitor } = require("peviitor_jsscraper");
