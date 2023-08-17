@@ -1,4 +1,3 @@
-const uuid = require("uuid");
 const { Scraper, Client } = require("./lib");
 
 /**
@@ -22,9 +21,8 @@ const postApiPeViitor = async (jobs, params) => {
 
   if (jobs.length === 0) throw new Error(`Joblist for ${company} is empty`);
   for (let i = 0; i < jobs.length; i += 1) {
-    const id = uuid.v4();
     const companyTrimmed = company.replace(/\s/g, ""); // Todo -> create a general purpose validator
-    jobs[i] = { ...jobs[i], id, company: companyTrimmed };
+    jobs[i] = { ...jobs[i], company: companyTrimmed };
   }
 
   console.log(`Joblist: ${JSON.stringify(jobs, null, 2)}`);
