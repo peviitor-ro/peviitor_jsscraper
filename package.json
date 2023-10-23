@@ -1,6 +1,6 @@
 {
   "name": "peviitor_jsscraper",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Lightweight library intended for scraping and interfacing with peviitor.ro",
   "main": "index.js",
   "scripts": {
@@ -8,18 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peviitor-ro/based_scraper_js.git"
+    "url": "git+https://github.com/peviitor-ro/peviitor_jsscraper.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/peviitor-ro/based_scraper_js/issues"
+    "url": "https://github.com/peviitor-ro/peviitor_jsscraper/issues"
   },
-  "homepage": "https://github.com/peviitor-ro/based_scraper_js#readme",
+  "homepage": "https://github.com/peviitor-ro/peviitor_jsscraper#readme",
   "dependencies": {
     "axios": "^1.4.0",
     "jsdom": "^22.1.0",
-    "jssoup": "^0.0.15",
-    "uuid": "^9.0.0"
+    "jssoup": "^0.0.15"
   }
 }
