@@ -30,6 +30,7 @@ const postApiPeViitor = async (jobs, params) => {
   await client.deleteJobs(company);
   await client.insertJobs(jobs, company);
   await client.postLogo(logo, company);
+  await client.postDataSet(company, jobs);
   console.log(`${company} SUCCESS!`);
 };
 
