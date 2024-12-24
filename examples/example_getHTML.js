@@ -1,11 +1,9 @@
-const { Scraper, postApiPeViitor } = require("../index");
-
-const generateJob = (job_title, job_link) => ({
-  job_title,
-  job_link,
-  country: "Romania",
-  city: "Craiova", // HQ location but might be remote?
-});
+const {
+  Scraper,
+  postApiPeViitor,
+  generateJob,
+  getParams,
+} = require("../index");
 
 const getJobs = async () => {
   const url = "https://www.sync.ro/jobs.html";
@@ -19,28 +17,23 @@ const getJobs = async () => {
     const jumpTo = "#:~:text="; // all jobs are on same page -> we simply jump to the element containing the job name
     const href = job_title.split(" ").join("%20");
     const job_link = url + jumpTo + href;
-    const job = generateJob(job_title, job_link);
+    const country = "Romania";
+    const city = "Craiova";
+    const county = "Dolj";
+
+    const job = generateJob(job_title, job_link, country, city, county);
     jobs.push(job);
   });
   return jobs;
 };
 
-const getParams = () => {
+const run = async () => {
   const company = "SyncROSoft";
   const logo =
     "https://www.sync.ro/oxygen-webhelp/template/resources/img/logo_syncrosoft.png";
-  const apikey = process.env.COSTIN;
-  const params = {
-    company,
-    logo,
-    apikey,
-  };
-  return params
-};
 
-const run = async () => {
   const jobs = await getJobs();
-  const params = getParams();
+  const params = getParams(company, logo);
   await postApiPeViitor(jobs, params);
 };
 

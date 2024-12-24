@@ -1,12 +1,10 @@
 const Jssoup = require("jssoup").default;
-const { Scraper, postApiPeViitor } = require("../index");
-
-const generateJob = (job_title, job_link, city) => ({
-  job_title,
-  job_link,
-  country: "Romania",
-  city,
-});
+const {
+  Scraper,
+  postApiPeViitor,
+  generateJob,
+  getParams,
+} = require("../index");
 
 const getJobs = async () => {
   const url =
@@ -40,21 +38,11 @@ const getJobs = async () => {
   return jobs;
 };
 
-const getParams = () => {
-  const company = "Abbvie";
-  const logo =
-    "https://tbcdn.talentbrew.com/company/14/v2_0/img/abbvie-logo-color.svg";
-  const apikey = process.env.APIKEY;
-  const params = {
-    company,
-    logo,
-    apikey,
-  };
-  return params;
-};
-
 const run = async () => {
-  const jobs = await getJobs();
+    const company = "Abbvie";
+    const logo =
+      "https://tbcdn.talentbrew.com/company/14/v2_0/img/abbvie-logo-color.svg";
+  const jobs = await getJobs(company, logo);
   const params = getParams();
   postApiPeViitor(jobs, params);
 };

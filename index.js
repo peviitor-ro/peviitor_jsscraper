@@ -1,4 +1,4 @@
-const { Scraper, Client } = require("./lib");
+const { Scraper, Client, generateJob, getParams } = require("./lib");
 
 /**
  * @summary Application interface for posting new jobs to https://peviitor.ro/
@@ -7,17 +7,17 @@ const { Scraper, Client } = require("./lib");
  * - job_link: Job url
  * - country: Country name
  * - city: City name
+ * - county: County name
+ * - remote: Remote , Hybrid or On-site
  * @param {Object} params Remaining parameters:
  * - params.company: Company name
  * - params.logo: Logo url
- * - params.apikey: Key fetched from https://dev.peviitor.ro/. Must be defined in github secrets, hence the use of process.env
  * @param {String} params.company
  * @param {String} params.logo
- * @param {String} params.apikey
  */
 const postApiPeViitor = async (jobs, params) => {
-  const { company, logo, apikey = process.env.APIKEY } = params;
-  const client = new Client(apikey);
+  const { company, logo, email } = params;
+  const client = new Client(email);
 
   if (jobs.length === 0) throw new Error(`Joblist for ${company} is empty`);
   for (let i = 0; i < jobs.length; i += 1) {
@@ -26,11 +26,8 @@ const postApiPeViitor = async (jobs, params) => {
   }
 
   console.log(`Joblist: ${JSON.stringify(jobs, null, 2)}`);
-  await Client.postCompany(company);
-  await client.deleteJobs(company);
   await client.insertJobs(jobs, company);
   await client.postLogo(logo, company);
-  await client.postDataSet(company, jobs);
   console.log(`${company} SUCCESS!`);
 };
 
@@ -44,8 +41,12 @@ const postApiPeViitor = async (jobs, params) => {
 const range = (start, stop, step) =>
   Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
 
+
+
 module.exports = {
   Scraper,
   postApiPeViitor,
   range,
+  generateJob,
+  getParams,
 };
