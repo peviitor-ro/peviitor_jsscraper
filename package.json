@@ -1,6 +1,6 @@
 {
   "name": "peviitor_jsscraper",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": "Lightweight library intended for scraping and interfacing with peviitor.ro",
   "main": "index.js",
   "scripts": {
