@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/peviitor-ro/peviitor_jsscraper#readme",
   "dependencies": {
-    "axios": "^1.4.0",
+    "axios": "^1.7.10",
     "jsdom": "^22.1.0",
     "jssoup": "^0.0.15",
     "dotenv": "^8.2.0"
